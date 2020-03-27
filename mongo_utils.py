@@ -63,7 +63,7 @@ CONTEXT_QUERY = [
      },
 ]
 
-def make_doc_gen(query=None):
+def make_doc_gen(db, query=None):
     """
     Returns tuples of of the form (text, context) from the mongo database. 
     
@@ -72,7 +72,8 @@ def make_doc_gen(query=None):
     These tuples can then be passed to a spacy pipeline and use the context for custom extensions.
     
     :Parameters:
-        - query: a dictionary-style query as used by pymongo. E.g., {"metadata.title": {"$regex": "coronavirus"}}
+        - `db`: a pymongo database object
+        - `query`: a dictionary-style query as used by pymongo. E.g., {"metadata.title": {"$regex": "coronavirus"}}
         .. if the query uses the $text operator, the returned documents are sorted by textScore.
     """
     
